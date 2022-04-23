@@ -69,7 +69,7 @@ for my $worksheet ( $workbook->worksheets() ) {
       next unless $cell;
       next unless length($cell->value) > $minstrsize;
       if($onlyuri eq 1) {
-        if($cell->value() !~ /https?:\/\//) {
+        if($cell->value() !~ /https?:\/\/.{3,256}|www\.|\.[a-z0-9_-]{3,64}\.[a-z]{2,6}/) {
           next;
         }
       }
