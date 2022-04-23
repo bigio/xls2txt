@@ -22,8 +22,33 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# xls2csv.pl - parses an excel spreadsheet and writes its text content to stdout
-# receives the Excel filename as first arguement
+# xls2txt - parses an Excel spreadsheet and writes its text content to stdout
+
+=head1 NAME
+
+xls2txt - parses an Excel spreadsheet and writes its text content to stdout
+
+=head1 DESCRIPTION
+
+xls2txt parses an Excel spreadsheet and writes its text content to stdout,
+short text can be ignored, the script can also extract only uris from the
+Excel file.
+
+=head2 OPTIONS
+
+Options for the program are:
+
+=over 4
+
+=item -i specifies the Excel file to read
+
+=item -s specifies the minimum size of the cell content (default value 20)
+
+=item -u specifies that we will extract only http uris
+
+=back
+
+=cut
 
 use strict;
 use warnings;
