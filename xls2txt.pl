@@ -55,6 +55,7 @@ use warnings;
 
 use Getopt::Std;
 use Spreadsheet::ParseExcel;
+use Spreadsheet::XLSX;
 
 my %opts;
 my $minstrsize = 20;
@@ -75,11 +76,21 @@ if ( defined $opts{'u'} ) {
   $onlyuri = 1;
 }
 
-my $parser   = Spreadsheet::ParseExcel->new();
-my $workbook = $parser->parse($filename);
+my $parser;
+my $workbook;
+if($filename =~ /\.xlsx/) {
+  $workbook = Spreadsheet::XLSX->new($filename);
+} else {
+  $parser   = Spreadsheet::ParseExcel->new();
+  $workbook = $parser->parse($filename);
+}
 
 if ( !defined $workbook ) {
-  warn $parser->error(), ".\n";
+  if(defined $parser) {
+    warn $parser->error(), ".\n";
+  } else {
+    warn "Parse error\n";
+  }
   exit;
 }
 
